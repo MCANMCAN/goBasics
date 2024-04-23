@@ -1,2 +1,2 @@
 # goBasics
-Learning projects for Language Golang. 
+Beginner projects for Golang. 
