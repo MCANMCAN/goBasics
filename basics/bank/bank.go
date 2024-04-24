@@ -9,10 +9,10 @@ func main() {
 	var depositAmount float64
 	var withdrawAmount float64
 
-	for i :=0 ; i < 2; i++ {
-
-	
+	// for i :=0 ; i < 2; i++ { -> finite loop
 		fmt.Println("welcome th Go Bank")
+	for {
+
 		fmt.Println("Choose an Operation!")
 		fmt.Println(
 			`
@@ -35,7 +35,8 @@ func main() {
 			fmt.Scan(&depositAmount)
 			if depositAmount <= 0 {
 				fmt.Println("The Deposit amount should be greater than 0!")
-				return
+				// return
+				continue
 			}
 			accountBalance += depositAmount
 			fmt.Println("New Amount: ", accountBalance )
@@ -44,15 +45,20 @@ func main() {
 			fmt.Scan(&withdrawAmount)
 			if withdrawAmount <= 0  {
 				fmt.Println("The Withdraw amount should be greater than 0!")
-				return
+				// return
+				continue
 			} else if withdrawAmount <= accountBalance{
 				fmt.Println("The Withdraw amount should not be greater than account balance!")
-				return
+				// return
+				continue
 			}
 			accountBalance -= withdrawAmount
 			fmt.Println("New Amount: ", accountBalance )
 		} else {
 			fmt.Println("Exiting the Bank. Thank You! " )
+			// return
+			break // to break loop
 		}
 	}
+	fmt.Println("Exiting the Bank. Thank You! " )
 }
