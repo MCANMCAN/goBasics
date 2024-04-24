@@ -1,6 +1,11 @@
 package main
 
 import "fmt"
+import "errors"
+import "os"
+// import "strconv"
+
+const resultFile = "results.txt"
 
 func main() {
 
@@ -28,6 +33,17 @@ func main() {
 
 	earningsBT, earningsAT, ratio = calculate(revenue, expenses, tax_rate)
 
+	full_text := fmt.Sprintf(
+`Earnings Before Tax = %.3f
+Earnings After Tax = %.3f
+The Ratio = %.3f `,earningsBT,earningsAT,ratio)
+
+	os.WriteFile(resultFile, []byte(full_text),444)
+	// fmt.Println(full_text)
+	// func writeBalanceToFile(balance float64) {
+	// 	balanceText := fmt.Sprint(balance)
+	// 	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644)	
+
 	fmt.Println("@@@@ RESULTS @@@")
 	fmt.Print("Earnings before Tax= ")
 	fmt.Println(earningsBT)
@@ -51,6 +67,19 @@ func getUserInfo(infoText string) float64 {
 	fmt.Print(infoText)
 	// fmt.Print("Please Enter the value of Revenue: ")
 	fmt.Scan(&userInput)
+	_ , err := checkInputValidity(userInput)
+	if err != nil {
+		fmt.Println(err)
+		panic("the input is not valid:\n")
+	}
 	return userInput
 
+}
+
+func checkInputValidity(Uinput float64) (bool,error) {
+
+		if Uinput <=0{
+			return false ,  errors.New("Input cannot be equal or lower than 0! ")
+		}
+	return true , nil
 }

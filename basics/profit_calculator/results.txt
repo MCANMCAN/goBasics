@@ -1,0 +1,3 @@
+Earnings Before Tax = 985.000
+Earnings After Tax = 975.150
+The Ratio = 1.010 
